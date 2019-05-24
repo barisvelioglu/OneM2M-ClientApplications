@@ -1,3 +1,9 @@
 {
-    "AE-Utility": "/in-cse/ae_78117c48-2530-44fe-9569-0d391eb3a9b9"
+    "AE-IPE": "/in-cse/ae_3d1d3bef-0205-4af4-b2c9-42dfdde584e6",
+    "NODE": "/in-cse/nod_43c78732-018a-4c96-85bf-dbeac7e604c8",
+    "MGMT_BATTERY": "/in-cse/mgo_21c9f444-a06f-4cd3-b5a7-97ccb7fe5303",
+    "MGMT_REBOOT": "/in-cse/mgo_c5806908-9bdd-4764-850e-9fa0180e4abd",
+    "SUBS-MGMT_REBOOT": "/in-cse/sub_e31cd00d-140a-4b79-ab29-3c949fabeb11",
+    "MGMT_SOFTWARE": "/in-cse/mgo_660ef830-276e-4326-b5a8-169b673d7208",
+    "SUBS-MGMT_SOFTWARE": "/in-cse/sub_110c3d31-c0ef-4610-a704-9e3de9f42e14"
 }
