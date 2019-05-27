@@ -14,6 +14,10 @@ app.get('/updatesoftware', function (req, res) {
     managementService.upgradeSoftware().then(() => { res.send('Upgrade process is started!') }, (error) => { res.send(error)});
 });
 
+app.get('/factoryreset', function (req, res) {
+    managementService.factoryReset().then(() => { res.send('Factory reset process is started!') }, (error) => { res.send(error)});
+});
+
 app.get('/rebootdevice', function (req, res) {
     managementService.rebootDevice().then(() => { res.send('Rebooting process is started!') }, (error) => { res.send(error)});
 });

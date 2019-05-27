@@ -5,19 +5,47 @@ const JSONdb                = require('simple-json-db');
 const db                    = new JSONdb(__dirname + '/../database.json');
 
 function rebootDevice(){
-    //buradan bir execinstance almalıyız
+
     let nodeID = db.get('NODE');
-    let mgmtCmdID = db.get('MGMT_CMD_REBOOT');
+    let mgmtObjID = db.get('MGMT_REBOOT');
 
     var data = {
-        "m2m:mgc" : {
-            "exe"    : true,
-            "ext"    : nodeID
+        "m2m:mgo" : {
+            "rbo"    : true
         }
     };
 
     return new Promise((resolve, reject) => {
-        axios.put(relatedCSEUrl + '/api/v1/onem2m/~' + mgmtCmdID, data, {
+        axios.put(relatedCSEUrl + '/api/v1/onem2m/~' + mgmtObjID, data, {
+            headers: {
+                'User-Agent': 'ipe',
+                'X-M2M-RI': "RI0",
+                'X-M2M-Origin': "CUtility" + uuidv1(),
+                'Content-Type': 'application/json;',
+                'X-M2M-RVI':'v3'
+            }
+        })
+        .then((res) => {
+            resolve();
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    });    
+}
+
+function factoryReset(){
+    let nodeID = db.get('NODE');
+    let mgmtObjID = db.get('MGMT_REBOOT');
+
+    var data = {
+        "m2m:mgo" : {
+            "far"    : true
+        }
+    };
+
+    return new Promise((resolve, reject) => {
+        axios.put(relatedCSEUrl + '/api/v1/onem2m/~' + mgmtObjID, data, {
             headers: {
                 'User-Agent': 'ipe',
                 'X-M2M-RI': "RI0",
@@ -41,9 +69,8 @@ function upgradeSoftware(){
     let mgmtCmdID = db.get('MGMT_CMD_SOFTWARE');
 
     var data = {
-        "m2m:mgc" : {
-            "exe"           : true,
-            "ext"           : nodeID
+        "m2m:mgo" : {
+            "far"    : true
         }
     };
 
@@ -68,5 +95,6 @@ function upgradeSoftware(){
 
 module.exports = {
     rebootDevice                : rebootDevice,
-    upgradeSoftware             : upgradeSoftware
+    upgradeSoftware             : upgradeSoftware,
+    factoryReset                : factoryReset
 }
